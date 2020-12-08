@@ -23,32 +23,29 @@ final class NetworkManager {
             completion(.failure(.invalidUrl))
             return
         }
-        
-        let request = URLRequest(url: url)
                 
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            guard let _ = error else {
-                completion(.failure(.invalidUrl))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let decodedResponse = try decoder.decode(AppetizerResponse.self, from: data)
-                completion(.success(decodedResponse.request))
-            } catch {
-                completion(.failure(.invalidData))
+        let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error == nil {
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    completion(.failure(.invalidResponse))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(.invalidData))
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let decodedResponse = try decoder.decode(AppetizerResponse.self, from: data)
+                    completion(.success(decodedResponse.request))
+                } catch {
+                    completion(.failure(.invalidData))
+                }
+            } else {
+                print("There was an error retrieving appetizers data.", error?.localizedDescription ?? "")
+                completion(.failure(.unableToComplete))
             }
         }
         dataTask.resume()
