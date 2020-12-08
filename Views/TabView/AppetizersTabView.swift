@@ -25,7 +25,8 @@ struct AppetizersTabView: View {
                     Image(systemName: "cart")
                     Text("Cart")
                 }
-        }.font(.headline)
+        }
+        .accentColor(.brandPrimary)
     }
 }
 
