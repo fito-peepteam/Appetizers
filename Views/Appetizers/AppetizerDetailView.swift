@@ -19,7 +19,6 @@ struct AppetizerDetailView: View {
                 .aspectRatio(contentMode: .fill)
             
             VStack {
-                
                 Text(appetizer.name)
                     .font(.title2)
                     .fontWeight(.semibold)
