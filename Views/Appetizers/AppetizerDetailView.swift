@@ -50,6 +50,10 @@ struct AppetizerDetailView: View {
                     .cornerRadius(10)
             })
         }
+        .frame(width: 320, height: 525)
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 40)
     }
 }
 
