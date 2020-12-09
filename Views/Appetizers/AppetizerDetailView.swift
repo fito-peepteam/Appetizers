@@ -13,47 +13,84 @@ struct AppetizerDetailView: View {
     
     var body: some View {
         VStack {
-            ZStack (alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-                AppetizerRemoteImage(urlString: appetizer.imageURL)
-                    .frame(minWidth: .infinity, minHeight: 200, alignment: .topTrailing)
-                Image(systemName: "xmark.circle.fill")
-            }
-            Text(appetizer.name)
-            Text(appetizer.description)
+            AppetizerRemoteImage(urlString: appetizer.imageURL)
+                .frame(width: 320, height: 200)
+                .aspectRatio(contentMode: .fill)
             
-            HStack {
-                VStack {
-                    Text("Calories")
-                    Text("\(appetizer.calories)")
-                }
+            VStack {
                 
-                VStack {
-                    Text("Carbs")
-                    Text("\(appetizer.carbs) g")
-                }
+                Text(appetizer.name)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                Text(appetizer.description)
+                    .multilineTextAlignment(.center)
+                    .font(.body)
+                    .padding()
                 
-                VStack {
-                    Text("Protein")
-                    Text("\(appetizer.protein) g")
+                HStack (spacing: 40) {
+                    VStack (spacing: 5) {
+                        Text("Calories")
+                            .bold()
+                            .font(.caption)
+                        Text("\(appetizer.calories)")
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                    }
+                    
+                    VStack (spacing: 5) {
+                        Text("Carbs")
+                            .bold()
+                            .font(.caption)
+                        Text("\(appetizer.carbs) g")
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                    }
+                    
+                    VStack (spacing: 5) {
+                        Text("Protein")
+                            .bold()
+                            .font(.caption)
+                        Text("\(appetizer.protein) g")
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                    }
                 }
             }
+            
+            Spacer()
             
             Button(action: {
                 print("Tapped add to order button.")
             }, label: {
-                Text("$\(appetizer.price) - Order")
+                Text("$\(appetizer.price/2, specifier: "%.2f") -  Order")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .frame(width: 260, height: 50)
                     .foregroundColor(.white)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .frame(width: 200, height: 50)
                     .background(Color.brandPrimary)
                     .cornerRadius(10)
             })
+            .padding()
         }
         .frame(width: 320, height: 525)
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 40)
+        .overlay(Button(action: {
+            
+        }, label: {
+            ZStack {
+                Circle()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.white)
+                    .opacity(0.6)
+                    .padding()
+                Image(systemName: "xmark")
+                    .imageScale(.small)
+                    .foregroundColor(.secondary)
+                    .frame(width: 44, height: 44)
+            }
+        }), alignment: .topTrailing)
     }
 }
 

@@ -10,17 +10,24 @@ import SwiftUI
 struct AppetizerListView: View {
     
     @ObservedObject var viewModel = AppetizerListViewModel()
+    @State private var isShowingDetail = false
     
     var body: some View {
         ZStack {
             NavigationView {
                 List(viewModel.appetizers) { appetizer in
                     AppetizerCellView(appetizer: appetizer)
+                        .onTapGesture {
+                            isShowingDetail = true
+                        }
                 }
                 .navigationTitle("Appetizers")
             }
             .onAppear {
                 viewModel.fetchAppetizers()
+            }
+            if isShowingDetail {
+                Appetizer
             }
             if viewModel.isLoading {
                 LoadingView()
