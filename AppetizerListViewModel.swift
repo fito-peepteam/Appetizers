@@ -11,11 +11,18 @@ final class AppetizerListViewModel: ObservableObject {
     
     @Published var appetizers: [Appetizer] = []
     @Published var alertItem: AlertItem?
+    @Published var isLoading = false {
+        didSet {
+            print(isLoading)
+        }
+    }
     
     func fetchAppetizers() {
         print("Loading appetizers...")
+        isLoading = true
         NetworkManager.shared.fetchAppetizers { result in
             DispatchQueue.main.async {
+                self.isLoading = false
                 switch result {
                 case .success(let appetizers):
                     print("Succeeded. Publishing changes.")
@@ -40,5 +47,4 @@ final class AppetizerListViewModel: ObservableObject {
             }
         }
     }
-    
 }
