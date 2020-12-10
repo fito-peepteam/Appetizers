@@ -26,6 +26,4 @@ final class Order: ObservableObject {
     func deleteItem(at offsets: IndexSet) {
         items.remove(atOffsets: offsets)
     }
-    
-    
 }
