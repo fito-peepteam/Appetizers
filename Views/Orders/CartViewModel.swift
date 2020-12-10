@@ -9,13 +9,13 @@ import SwiftUI
 
 final class CartViewModel: ObservableObject {
     
-    @Published var Cart = [Appetizer]()
+    @Published var cart = [Appetizer]()
     
     func addToCart(appetizer: Appetizer) {
-        Cart.append(appetizer)
+        cart.append(appetizer)
     }
     
     func clearCart() {
-        self.Cart.removeAll()
+        self.cart.removeAll()
     }
 }
