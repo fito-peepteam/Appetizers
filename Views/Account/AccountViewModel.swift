@@ -19,12 +19,13 @@ final class AccountViewModel: ObservableObject {
     
     var isValidForm: Bool {
         guard !firstName.isEmpty || !lastName.isEmpty || !email.isEmpty else {
-            // show alert
+            print("Showing empty Field alert.")
             self.alertItem = AlertContext.emptyTextFieldInForm
             return false
         }
         
         guard email.isValidEmail else {
+            print("Showing Invalid Email alert.")
             self.alertItem = AlertContext.invalidEmail
             return false
         }
@@ -33,10 +34,10 @@ final class AccountViewModel: ObservableObject {
     }
     
     func saveData() {
-        if isValidForm {
-            
+        if !isValidForm  {
+            print("Error. Form is invalid.")
         } else {
-            
+            print("Saved Data.")
         }
     }
 }

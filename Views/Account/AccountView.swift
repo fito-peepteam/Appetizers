@@ -24,7 +24,7 @@ struct AccountView: View {
                     
                     DatePicker("Birthday", selection: $viewModel.birthday, displayedComponents: .date)
                     Button {
-                        print("Save")
+                        viewModel.saveData()
                     } label: {
                         Text("Save changes")
                     }
