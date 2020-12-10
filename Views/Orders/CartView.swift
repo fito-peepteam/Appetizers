@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct OrderView: View {
+struct CartView: View {
+
+    
+    
     var body: some View {
         NavigationView {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -18,6 +21,6 @@ struct OrderView: View {
 
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderView()
+        CartView()
     }
 }
