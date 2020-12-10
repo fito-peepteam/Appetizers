@@ -20,12 +20,22 @@ struct AlertContext {
     static let invalidName = AlertItem(title: Text("Invalid Name"),
                                        message: Text("Please enter a valid name."),
                                        dismissButton: .default(Text("Ok")))
+    
     static let invalidEmail = AlertItem(title: Text("Invalid Email"),
                                         message: Text("Please enter a valid email."),
                                         dismissButton: .default(Text("Ok")))
+    
     static let emptyTextFieldInForm = AlertItem(title: Text("Fill it up"),
                                                 message: Text("Please make sure you entered all the necessary data."),
                                                 dismissButton: .default(Text("Ok")))
+    
+    static let invalidUserData = AlertItem(title: Text("Uh-oh!"),
+                                           message: Text("User data is invalid. Please try again."),
+                                           dismissButton: .default(Text("Ok")))
+    
+    static let successSavingUserData = AlertItem(title: Text("All set!"),
+                                                 message: Text("User data was saved locally in your iPhone."),
+                                                 dismissButton: .default(Text("Ok")))
     
     
     // MARK: - Networking Call Alerts

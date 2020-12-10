@@ -9,6 +9,7 @@ import SwiftUI
 
 final class AccountViewModel: ObservableObject {
     
+    @AppStorage("user") private var userData: Data?
     @Published var user = User()
     @Published var alertItem: AlertItem?
     
@@ -28,11 +29,27 @@ final class AccountViewModel: ObservableObject {
         return true
     }
     
+    func retrieveUser() {
+        guard let userData = userData else { return } // this can be the fresh launch. we're letting it show as blank, so the user can fill it up.
+        
+        do {
+            user = try JSONDecoder().decode(User.self, from: userData)
+        } catch {
+            self.alertItem = AlertContext.invalidUserData
+        }
+    }
+    
     func saveData() {
-        if !isValidForm  {
-            print("Error. Form is invalid.")
-        } else {
-            print("Saved Data.")
+        
+        guard isValidForm else { return }
+        
+        do {
+            let data = try JSONEncoder().encode(user)
+            userData = data
+            self.alertItem = AlertContext.successSavingUserData
+        } catch {
+            print(error.localizedDescription)
+            self.alertItem = AlertContext.invalidUserData
         }
     }
 }

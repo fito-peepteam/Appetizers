@@ -43,6 +43,9 @@ struct AccountView: View {
                           message: alertItem.message,
                           dismissButton: alertItem.dismissButton)
             }
+            .onAppear {
+                viewModel.retrieveUser()
+            }
         }
     }
 }
