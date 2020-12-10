@@ -15,18 +15,28 @@ final class AccountViewModel: ObservableObject {
     @Published var birthday: Date = Date()
     @Published var extraNapkins: Bool = false
     @Published var frequentRefills: Bool = false
+    @Published var alertItem: AlertItem?
     
     var isValidForm: Bool {
         guard !firstName.isEmpty || !lastName.isEmpty || !email.isEmpty else {
             // show alert
+            self.alertItem = AlertContext.emptyTextFieldInForm
             return false
         }
         
         guard email.isValidEmail else {
-            
+            self.alertItem = AlertContext.invalidEmail
             return false
         }
         
         return true
+    }
+    
+    func saveData() {
+        if isValidForm {
+            
+        } else {
+            
+        }
     }
 }
