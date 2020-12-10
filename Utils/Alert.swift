@@ -15,6 +15,20 @@ struct AlertItem: Identifiable {
 }
 
 struct AlertContext {
+    
+    // MARK: - Account View Alerts
+    static let invalidName = AlertItem(title: Text("Invalid Name"),
+                                       message: Text("Please enter a valid name."),
+                                       dismissButton: .default(Text("Ok")))
+    static let invalidEmail = AlertItem(title: Text("Invalid Email"),
+                                        message: Text("Please enter a valid email."),
+                                        dismissButton: .default(Text("Ok")))
+    static let emptyTextFieldInForm = AlertItem(title: Text("Fill it up"),
+                                                message: Text("Please make sure you entered all the necessary data."),
+                                                dismissButton: .default(Text("Ok")))
+    
+    
+    // MARK: - Networking Call Alerts
     static let invalidUrl = AlertItem(title: Text("Invalid URL"),
                                       message: Text(ALError.invalidUrl.rawValue),
                                       dismissButton: .default(Text("Ok")))
